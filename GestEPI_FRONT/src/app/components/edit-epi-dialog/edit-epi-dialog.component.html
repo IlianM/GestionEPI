@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Modifier EPI</h1>
+<div mat-dialog-content>
+  <form [formGroup]="epiForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Marque</mat-label>
+      <input matInput formControlName="brand">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Modèle</mat-label>
+      <input matInput formControlName="model">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Numéro de série</mat-label>
+      <input matInput formControlName="serialNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="epiType">
+    </mat-form-field>
+
+
+    <!-- Ajoutez d'autres champs ici selon les propriétés de votre EPI -->
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button [mat-dialog-close]="epiForm.value" cdkFocusInitial>Enregistrer</button>
+</div>
+

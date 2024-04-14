@@ -1,0 +1,13 @@
+.mat-form-field {
+  width: 100%; // Assure que les champs de formulaire utilisent toute la largeur disponible
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}

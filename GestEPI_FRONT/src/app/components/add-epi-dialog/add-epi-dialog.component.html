@@ -1,0 +1,84 @@
+<!-- add-epi-dialog.component.html -->
+
+<h1 mat-dialog-title>Ajouter un EPI</h1>
+<div mat-dialog-content>
+  <form [formGroup]="epiForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Marque</mat-label>
+      <input matInput formControlName="brand">
+      <mat-error *ngIf="epiForm.get('brand')?.hasError('required')">La marque est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Modèle</mat-label>
+      <input matInput formControlName="model">
+      <mat-error *ngIf="epiForm.get('model')?.hasError('required')">Le modèle est requis.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Numéro de série</mat-label>
+      <input matInput formControlName="serialNumber">
+      <mat-error *ngIf="epiForm.get('serialNumber')?.hasError('required')">Le numéro de série est requis.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>ID interne</mat-label>
+      <input matInput formControlName="innerId">
+      <mat-error *ngIf="epiForm.get('innerId')?.hasError('required')">L'ID interne est requis.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="epiType">
+      <mat-error *ngIf="epiForm.get('epiType')?.hasError('required')">Le type est requis.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Taille</mat-label>
+      <input matInput formControlName="size">
+      <mat-error *ngIf="epiForm.get('size')?.hasError('required')">La taille est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Couleur</mat-label>
+      <input matInput formControlName="color">
+      <mat-error *ngIf="epiForm.get('color')?.hasError('required')">La couleur est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date d'achat</mat-label>
+      <input matInput type="date" formControlName="purchaseDate">
+      <mat-error *ngIf="epiForm.get('purchaseDate')?.hasError('required')">La date d'achat est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date de fabrication</mat-label>
+      <input matInput type="date" formControlName="manufactureDate">
+      <mat-error *ngIf="epiForm.get('manufactureDate')?.hasError('required')">La date de fabrication est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date de mise en service</mat-label>
+      <input matInput type="date" formControlName="inServiceDate">
+      <mat-error *ngIf="epiForm.get('inServiceDate')?.hasError('required')">La date de mise en service est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fréquence de vérification</mat-label>
+      <input matInput type="number" formControlName="checkFrequency">
+      <mat-error *ngIf="epiForm.get('checkFrequency')?.hasError('required')">La fréquence de vérification est requise.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Unité de fréquence de vérification</mat-label>
+      <input matInput formControlName="checkFrequencyUnit">
+      <mat-error *ngIf="epiForm.get('checkFrequencyUnit')?.hasError('required')">L'unité de fréquence de vérification est requise.</mat-error>
+    </mat-form-field>
+
+    <!-- Ajoutez d'autres champs ici selon les propriétés de votre EPI -->
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button [mat-dialog-close]="epiForm.value" cdkFocusInitial>Enregistrer</button>
+</div>

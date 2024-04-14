@@ -1,0 +1,22 @@
+/* add-epi-dialog.component.scss */
+
+/* Assure que les champs de formulaire utilisent toute la largeur disponible */
+.mat-form-field {
+  width: 100%;
+}
+
+/* Positionne les éléments du contenu du dialogue en colonne */
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Positionne les actions du dialogue à droite */
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-dialog-container {
+  max-width: 600px; /* Réglez la largeur maximale de la pop-up selon vos besoins */
+}
