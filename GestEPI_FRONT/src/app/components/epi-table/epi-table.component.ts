@@ -39,10 +39,18 @@ export class EpiTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.epi.push(result);
-        this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
+        this.epiService.addEpi(result).subscribe(
+          (newEpi) => {
+            this.epi.push(newEpi);
+            this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
+          },
+          error => {
+            console.error('Error when adding EPI:', error);
+          }
+        );
       }
     });
+
   }
 
   openEditDialog(epiData: any): void {
