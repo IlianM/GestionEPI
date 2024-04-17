@@ -3,16 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5501/epiUser'; // URL de ton API pour la connexion
+    private apiUrl = 'http://localhost:4200'; // Remplacer avec l'URL de ton API
 
-  constructor(private http: HttpClient) {}
+    constructor(private httpClient: HttpClient) {} // Assure-toi que HttpClient est injecté ici
 
-  // Dans AuthenticationService
-  login(credentials: { firstName: string; lastName: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials);
-  }
-
+    login(credentials: { firstName: string; lastName: string }): Observable<any> {
+        return this.httpClient.post(`${this.apiUrl}/login`, credentials);
+    }
 }

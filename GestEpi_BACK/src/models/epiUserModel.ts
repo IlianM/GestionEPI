@@ -22,6 +22,19 @@ export const epiUserModel = {
         }
     },
 
+    async findByCredentials(firstName: string, lastName: string): Promise<EpiUser | null> {
+        const conn = await pool.getConnection();
+        try {
+            const query = `SELECT * FROM epiUser WHERE firstName = ? AND lastName = ? LIMIT 1`;
+            const [rows]: [EpiUser[], FieldPacket[]] = await conn.query(query, [firstName, lastName]);
+            return rows.length > 0 ? rows[0] : null;
+        } catch (error) {
+            throw error;
+        } finally {
+            if (conn) conn.release();
+        }
+    },
+
     async getById(id: number): Promise<EpiUser | null> {
         const conn = await pool.getConnection();
         try {
@@ -68,16 +81,7 @@ export const epiUserModel = {
     },
 
     // Dans epiUserModel
-    async findByCredentials(firstName: string, lastName: string): Promise<EpiUser | null> {
-        const conn = await pool.getConnection();
-        try {
-            const query = `SELECT * FROM epiUser WHERE firstName = ? AND lastName = ?`;
-            const [rows]: [EpiUser[], FieldPacket[]] = await conn.query(query, [firstName, lastName]);
-            return rows[0] || null; // Assurez-vous qu'il retourne correctement l'utilisateur si trouvé
-        } finally {
-            if (conn) conn.release();
-        }
-    }
+
 
 
 };

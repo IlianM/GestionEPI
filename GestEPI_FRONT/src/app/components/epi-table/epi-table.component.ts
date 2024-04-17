@@ -40,8 +40,15 @@ export class EpiTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.epi.push(result);
-        this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
+        this.epiService.addEpi(result).subscribe(
+          (newEpi) => {
+            this.epi.push(newEpi);
+            this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
+          },
+          error => {
+            console.error('Error when adding EPI:', error);
+          }
+        );
       }
     });
   }
@@ -52,22 +59,6 @@ export class EpiTableComponent implements OnInit {
       data: epiData // Passez les données de l'EPI à modifier au dialogue
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.epiService.updateEpi(epiData.id, result).subscribe({
-          next: (updatedEpi) => {
-            const index = this.epi.findIndex(epi => epi.id === epiData.id);
-            if (index !== -1) {
-              this.epi[index] = { ...this.epi[index], ...updatedEpi };
-              this.epi = [...this.epi]; // Rafraîchir les données du tableau
-            }
-          },
-          error: (error) => {
-            console.error('Erreur lors de la mise à jour de l\'EPI:', error);
-          }
-        });
-      }
-    });
   }
 
   openDeleteDialog(epi: any): void {

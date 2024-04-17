@@ -14,8 +14,12 @@ require('dotenv').config();
 const allowedOrigins = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'http://localhost:4200'  // Ajout de l'URL du frontend Angular
+    'http://localhost:4200',
+    'http://localhost:5501'
+    // Ajout de l'URL du frontend Angular
 ];
+
+
 const options: cors.CorsOptions = {
     origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Spécification des méthodes autorisées

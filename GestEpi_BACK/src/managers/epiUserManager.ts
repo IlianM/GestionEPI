@@ -75,18 +75,17 @@ export const epiUserManager = {
         }
     },
 
-    async authenticateUser(req: Request, res: Response): Promise<void> {
-        const { firstName, lastName } = req.body;
+    async authenticateUser(req: Request, res: Response) {
         try {
+            const { firstName, lastName } = req.body;
             const user = await epiUserModel.findByCredentials(firstName, lastName);
-            if (!user) {
-                res.status(401).json({ message: 'Invalid credentials' });
+            if (user) {
+                res.json({ success: true, user });
             } else {
-                // Implement token generation or session management here
-                res.status(200).json({ message: 'Authentication successful', user });
+                res.status(401).json({ success: false, message: 'Invalid credentials' });
             }
         } catch (error) {
-            res.status(500).json({ message: error instanceof Error ? error.message : 'An error occurred during authentication' });
+            res.status(500).json({ success: false, message: error instanceof Error ? error.message : 'An unknown error occurred'});
         }
     }
 };

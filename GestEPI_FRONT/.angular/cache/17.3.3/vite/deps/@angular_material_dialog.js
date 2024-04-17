@@ -2,17 +2,7 @@ import {
   ScrollDispatcher,
   ScrollingModule,
   ViewportRuler
-} from "./chunk-VFFGACNM.js";
-import {
-  animate,
-  animateChild,
-  group,
-  query,
-  state,
-  style,
-  transition,
-  trigger
-} from "./chunk-L3BIELZO.js";
+} from "./chunk-VUM3PE5N.js";
 import {
   A11yModule,
   BidiModule,
@@ -31,7 +21,17 @@ import {
   coerceNumberProperty,
   hasModifierKey,
   supportsScrollBehavior
-} from "./chunk-Q5RRTD2B.js";
+} from "./chunk-MICMVHRJ.js";
+import {
+  animate,
+  animateChild,
+  group,
+  query,
+  state,
+  style,
+  transition,
+  trigger
+} from "./chunk-L3BIELZO.js";
 import {
   DOCUMENT,
   Location

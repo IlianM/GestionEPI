@@ -25,9 +25,11 @@ export class LoginComponent {
   }
 
   login(): void {
+    this.router.navigate(['/epi-list']);
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
+
           // Gérez la réponse en fonction de la structure de votre API
           if (response.success) {
             // Assurez-vous que la réponse contient les bons champs selon votre API
