@@ -26,15 +26,10 @@ export const epiManager = {
 
   async addEPI(req: Request, res: Response) {
     try {
-      const insertId = await epiModel.addOne(req.body);
-      if (insertId) {
-        const epi = await epiModel.getById(insertId);
-        res.status(201).json(epi);
-      } else {
-        res.status(400).json({ message: 'Failed to add EPI.' });
-      }
+      const epiId = await epiModel.addOne(req.body);
+      res.status(201).json({ id: epiId }); // Renvoyer l'ID de l'EPI ajouté
     } catch (error) {
-      res.status(500).json({ message: error instanceof Error ? error.message : 'An error occurred while adding the EPI' });
+      res.status(400).json({ message: error instanceof Error ? error.message : 'An error occurred while adding the EPI' });
     }
   },
 

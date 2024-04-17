@@ -6,16 +6,16 @@ export interface EPI extends RowDataPacket {
   id: number;
   epiType: string;
   brand: string;
-    model: string;
-    serialNumber: string;
-    innerId: string;
-    size: string;
-    color: string;
-    purchaseDate: Date;
-    manufactureDate: Date;
-    inServiceDate: Date;
-    checkFrequency: number;
-    checkFrequencyUnit: string;
+  model: string;
+  serialNumber: string;
+  innerId: string;
+  size: string;
+  color: string;
+  purchaseDate: Date;
+  manufactureDate: Date;
+  inServiceDate: Date;
+  checkFrequency: number;
+  checkFrequencyUnit: string;
   // Add other properties according to your database schema
 }
 
@@ -42,17 +42,17 @@ export const epiModel = {
     }
   },
 
-      async addOne(epi: EPI): Promise<number> {
-        const conn = await pool.getConnection();
-        try {
-          const query = 'INSERT INTO epi (brand, model, serialNumber, innerId, epiType, size, color, purchaseDate, manufactureDate, inServiceDate, checkFrequency, checkFrequencyUnit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-          const [result]: [ResultSetHeader, FieldPacket[]] = await conn.query(query, [epi.brand, epi.model, epi.serialNumber, epi.innerId, epi.epiType, epi.size, epi.color, epi.purchaseDate, epi.manufactureDate, epi.inServiceDate, epi.checkFrequency, epi.checkFrequencyUnit]);
-          return result.insertId;
-        } finally {
-          if (conn) conn.release();
-        }
-      },
-
+  async addOne(epi: EPI): Promise<void> {
+    const conn = await pool.getConnection();
+    try {
+      // Assurez-vous que la requête contient le bon nombre de placeholders
+      const query = 'INSERT INTO epi (brand, model, serialNumber, innerId, epiType, size, color, purchaseDate, manufactureDate, inServiceDate, checkFrequency, checkFrequencyUnit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+      // Utilisez un tableau pour passer les valeurs à la requête, en respectant l'ordre des champs dans la requête
+      await conn.query(query, [epi.brand, epi.model, epi.serialNumber, epi.innerId, epi.epiType, epi.size, epi.color, epi.purchaseDate, epi.manufactureDate, epi.inServiceDate, epi.checkFrequency, epi.checkFrequencyUnit]);
+    } finally {
+      if (conn) conn.release();
+    }
+  },
 
 
   async update(id: number, epiData: Partial<EPI>): Promise<number> {

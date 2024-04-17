@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { epiUserManager } from '../../managers/epiUserManager'; // Assurez-vous que le chemin est correct
 
 const router = Router();
@@ -9,5 +9,6 @@ router.get('/:id', epiUserManager.getUserById); // Obtenir un utilisateur par so
 router.post('/', epiUserManager.addUser); // Ajouter un nouvel utilisateur
 router.put('/:id', epiUserManager.updateUser); // Mettre à jour un utilisateur existant par son ID
 router.delete('/:id', epiUserManager.deleteUser); // Supprimer un utilisateur par son ID
+router.post('/login', epiUserManager.authenticateUser); // Route pour la connexion des utilisateurs
 
-export { router as epiUserController }; // Exporter en tant que epiUserController
+export { router as epiUserController };
