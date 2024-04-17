@@ -1,18 +1,25 @@
-  import { NgModule } from '@angular/core';
-  import { Routes, RouterModule } from '@angular/router';
-  import { EpiTableComponent } from './components/epi-table/epi-table.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { EpiTableComponent } from './components/epi-table/epi-table.component';
+import { LoginComponent } from './login/login.component';
+import { EpiCheckTableComponent } from './components/epi-check-table/epi-check-table.component'; // Assurez-vous que le chemin d'importation est correct
 
-  // Définition des routes de l'application
-  const routes: Routes = [
-    // Définir une route pour le chemin racine de l'application
-    // qui charge le EpiTableComponent
-    { path: '', component: EpiTableComponent }
-  ];
+const routes: Routes = [
+  // Redirection par défaut vers la page de connexion
+  { path: '', redirectTo: '/epi-check', pathMatch: 'full' },
 
-  @NgModule({
-    // Importer RouterModule et le configurer avec les routes définies
-    imports: [RouterModule.forRoot(routes)],
-    // Exporter RouterModule pour le rendre disponible dans d'autres parties de l'application
-    exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+  // Route pour la page de connexion
+  { path: 'login', component: LoginComponent },
+
+  // Route pour la liste des EPI
+  { path: 'epi-list', component: EpiTableComponent },
+
+  // Ajoutez votre nouvelle route ici
+  { path: 'epi-check', component: EpiCheckTableComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

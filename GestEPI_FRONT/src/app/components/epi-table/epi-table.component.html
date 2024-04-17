@@ -1,8 +1,16 @@
-
 <div class="container">
   <h2 class="title">Gestion des Équipements de Protection Individuelle (EPI)</h2>
 
-  <button mat-raised-button color="primary" (click)="openAddDialog()">Ajouter un EPI</button>
+  <div class="epi-check-page">
+    <!-- Barre de navigation ou boutons de navigation -->
+    <div class="navigation-buttons">
+      <div class="left-buttons">
+        <button mat-raised-button color="primary" (click)="openAddDialog()">Ajouter un EPI</button>
+      </div>
+      <div class="right-buttons">
+        <button mat-raised-button color="primary" (click)="navigateToEpiCheckList()">Liste des Check EPI</button>
+      </div>
+    </div>
 
   <table mat-table [dataSource]="epi" class="mat-elevation-z8">
 
@@ -98,5 +106,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
-
+</div>
 

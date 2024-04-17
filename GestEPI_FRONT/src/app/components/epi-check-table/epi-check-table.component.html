@@ -1,0 +1,57 @@
+<div class="epi-check-page">
+  <!-- Barre de navigation ou boutons de navigation -->
+  <div class="navigation-buttons">
+    <button mat-raised-button color="primary" (click)="navigateToEpiList()">Liste des EPI</button>
+    <!-- Ajouter d'autres boutons si nécessaire -->
+  </div>
+
+
+
+<div class="epi-check-table-container">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <!-- EPI ID Column -->
+    <ng-container matColumnDef="epiBrandModel">
+      <mat-header-cell *matHeaderCellDef> EPI ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.epiBrandModel }} </mat-cell>
+    </ng-container>
+
+    <!-- Check Date Column -->
+    <ng-container matColumnDef="checkDate">
+      <mat-header-cell *matHeaderCellDef> Date de Vérification </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.checkDate | date }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="checkStatusLabel">
+      <mat-header-cell *matHeaderCellDef> Status Label </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.checkStatusLabel }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.userName }} </mat-cell>
+    </ng-container>
+
+    <!-- Check Comment Column -->
+    <ng-container matColumnDef="checkComment">
+      <mat-header-cell *matHeaderCellDef> Commentaire </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.checkComment }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="openEditDialog(element)">Modifier</button>
+        <button mat-button color="warn" (click)="deleteEpiCheck(element.id)">Supprimer</button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Row Definitions -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>
+</div>

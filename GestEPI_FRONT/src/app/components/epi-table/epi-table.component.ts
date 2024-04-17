@@ -4,6 +4,7 @@ import { EpiService } from '../../services/epi.service';
 import { EditEpiDialogComponent } from '../edit-epi-dialog/edit-epi-dialog.component';
 import { AddEpiDialogComponent } from '../add-epi-dialog/add-epi-dialog.component';
 import { DeleteEpiDialogComponent } from '../delete-epi-dialog/delete-epi-dialog.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-epi-table',
@@ -14,7 +15,7 @@ export class EpiTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'brand', 'model', 'serialNumber', 'innerId', 'epiType', 'size', 'color', 'purchaseDate', 'manufactureDate', 'inServiceDate', 'checkFrequency', 'checkFrequencyUnit', 'actions'];
   epi: any[] = []; // Ce tableau sera utilisé comme source de données pour le tableau
 
-  constructor(private epiService: EpiService, public dialog: MatDialog) { }
+  constructor(private epiService: EpiService, public dialog: MatDialog,private router: Router,) { }
 
   ngOnInit(): void {
     this.fetchEpiData();
@@ -39,18 +40,10 @@ export class EpiTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.epiService.addEpi(result).subscribe(
-          (newEpi) => {
-            this.epi.push(newEpi);
-            this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
-          },
-          error => {
-            console.error('Error when adding EPI:', error);
-          }
-        );
+        this.epi.push(result);
+        this.epi = [...this.epi]; // Rafraîchir les données après l'ajout d'un nouvel EPI
       }
     });
-
   }
 
   openEditDialog(epiData: any): void {
@@ -83,6 +76,9 @@ export class EpiTableComponent implements OnInit {
       data: { epi }
     });
 
+
+
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Supprimer l'EPI supprimé du tableau
@@ -96,5 +92,8 @@ export class EpiTableComponent implements OnInit {
         });
       }
     });
+  }
+  navigateToEpiCheckList(): void {
+    this.router.navigate(['/epi-check']);
   }
 }

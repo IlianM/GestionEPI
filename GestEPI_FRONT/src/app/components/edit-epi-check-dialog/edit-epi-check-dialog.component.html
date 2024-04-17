@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Modifier EpiCheck</h2>
+<div mat-dialog-content>
+  <form [formGroup]="epiCheckForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>ID EPI</mat-label>
+      <input matInput formControlName="epiId">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Date de Vérification</mat-label>
+      <input matInput type="date" formControlName="checkDate">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Statut</mat-label>
+      <input matInput formControlName="checkStatus">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>ID Utilisateur</mat-label>
+      <input matInput formControlName="userId">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Commentaire</mat-label>
+      <textarea matInput formControlName="checkComment"></textarea>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Annuler</button>
+      <button mat-button color="primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
+</div>

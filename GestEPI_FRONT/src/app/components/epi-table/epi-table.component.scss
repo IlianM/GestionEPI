@@ -18,6 +18,19 @@
   background-color: #f2f2f2; /* Ajoute une couleur de fond pour les cellules d'en-tête */
 }
 
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.left-buttons,
+.right-buttons {
+  display: flex;
+}
+
+
 .title {
   font-size: 24px; /* Définit la taille de police du titre */
   margin-bottom: 10px; /* Ajoute une marge en bas du titre */
